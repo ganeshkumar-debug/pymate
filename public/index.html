@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,interactive-widget=resizes-content,viewport-fit=cover">
+  <title>PyMate — Python AI Chatbot</title>
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div id="app">
+
+  <!-- ── Sidebar ── -->
+  <aside id="sidebar" class="sidebar">
+    <div class="sb-top">
+      <div class="brand"><img src="/assets/logo.svg" class="brand-logo" alt=""><span class="brand-name">PyMate</span></div>
+      <button class="i-btn" id="closeSidebar" aria-label="Close sidebar">✕</button>
+    </div>
+    <button class="new-btn" id="newChatBtn">+ New Chat</button>
+    <p class="sb-label">Quick Topics</p>
+    <div class="chips">
+      <button class="chip" data-q="How do I fix this Python traceback error?">🐛 Fix Error</button>
+      <button class="chip" data-q="Explain Python decorators with examples">🎯 Decorators</button>
+      <button class="chip" data-q="Build a FastAPI REST API with CRUD">🚀 FastAPI</button>
+      <button class="chip" data-q="How does async await work in Python?">⚡ Async</button>
+      <button class="chip" data-q="Pandas dataframe filtering and groupby">📊 Pandas</button>
+      <button class="chip" data-q="Python list and dict comprehensions">🐍 Comprehensions</button>
+    </div>
+    <p class="sb-label" style="margin-top:14px">History <button class="clr-btn" id="clearHistBtn">Clear</button></p>
+    <div class="hist" id="histList"></div>
+    <div class="sb-foot"><span class="dot-green"></span> Online</div>
+  </aside>
+
+  <!-- ── Main ── -->
+  <main class="main">
+    <header class="topbar">
+      <div class="tb-l">
+        <button class="i-btn" id="openSidebar" aria-label="Open sidebar">☰</button>
+        <select class="model-select" id="modelSelect" aria-label="Select model">
+          <option value="gemini-3.5-flash">gemini-3.5-flash</option>
+        </select>
+      </div>
+      <div class="tb-r">
+        <span class="status-pill"><span class="dot-sm" id="statusDot"></span><span id="statusText">…</span></span>
+      </div>
+    </header>
+
+    <div class="chat-area" id="chatArea">
+      <!-- Welcome screen -->
+      <div id="welcome" class="welcome">
+        <img src="/assets/logo.svg" class="w-logo" alt="">
+        <h1 class="w-title">PyMate</h1>
+        <p class="w-sub">Dedicated Python AI Chatbot</p>
+        <div class="w-pills">
+          <span>⚡ Instant Stream</span><span>🐍 Python Only</span><span>💬 Typos OK</span><span>🔒 Free to Use</span>
+        </div>
+        <div class="starters">
+          <div class="card" data-q="Why am I getting TypeError: unsupported operand type(s)?">
+            <b>🐛 Debug Errors</b><p>Paste any traceback</p>
+          </div>
+          <div class="card" data-q="i need python script read csv filter age > 25 write new csv">
+            <b>📝 Broken English OK</b><p>Ask in any format</p>
+          </div>
+          <div class="card" data-q="Build a FastAPI app with Pydantic and SQLite CRUD">
+            <b>🚀 Frameworks</b><p>FastAPI, Django, Flask</p>
+          </div>
+          <div class="card" data-q="Explain generators and yield in Python">
+            <b>💡 Deep Concepts</b><p>Generators, GIL, async</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Messages -->
+      <div id="msgList" class="msg-list" style="display:none"></div>
+    </div>
+
+    <!-- Input — NOT absolute, part of flexbox column -->
+    <div class="input-wrap">
+      <div class="input-box">
+        <form id="chatForm">
+          <textarea id="chatInput" placeholder="Ask anything about Python…" rows="1"></textarea>
+          <button type="submit" class="send" id="sendBtn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          </button>
+        </form>
+        <div class="input-foot">Enter → send · Shift+Enter → newline · Latency: <b id="latency">—</b></div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<div id="toasts" class="toasts"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.1/marked.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js"></script>
+<script src="/js/app.js"></script>
+</body>
+</html>
